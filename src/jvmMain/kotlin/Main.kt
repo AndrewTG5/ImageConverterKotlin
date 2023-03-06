@@ -61,10 +61,7 @@ fun App() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
-                    .clickable {
-                        handleBoxClick()
-                        displayImage = handler.getImage()
-                    }
+                    .clickable { if (handleBoxClick()) displayImage = handler.getImage() }
                     .border(BorderStroke(4.dp, Color.Black))
             ) {
                 Column(
@@ -95,12 +92,13 @@ fun App() {
 /**
  * Handles the click event for the image box. Opens a file chooser and reads the selected file into ImageHandler.
  */
-fun handleBoxClick() {
+fun handleBoxClick():Boolean {
     val parent: Dialog? = null
 
     val fileChooser = FileDialog(parent, "Choose an image", FileDialog.LOAD)
     fileChooser.isVisible = true
-    if (fileChooser.file == null) return
+    if (fileChooser.file == null) return false
 
     handler.read(fileChooser.directory + fileChooser.file)
+    return true
 }
