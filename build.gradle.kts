@@ -24,6 +24,9 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation("com.sksamuel.scrimage:scrimage-core:4.0.33")
+                implementation("com.sksamuel.scrimage:scrimage-formats-extra:4.0.33")
+                implementation("com.sksamuel.scrimage:scrimage-webp:4.0.33")
             }
         }
         val jvmTest by getting
