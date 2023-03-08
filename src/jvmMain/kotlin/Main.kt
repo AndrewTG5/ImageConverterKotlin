@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.awt.ComposeWindow
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.ImageBitmapConfig
 import androidx.compose.ui.graphics.colorspace.ColorSpaces
@@ -42,8 +43,7 @@ fun main() = application {
 fun App() {
     MaterialTheme {
         Column {
-            var displayImage: ImageBitmap by remember { // the currently displayed image, defaults to a blank image
-                mutableStateOf(
+            var displayImage: ImageBitmap by remember { mutableStateOf( // the currently displayed image, defaults to a blank image
                     ImageBitmap(
                         width = 300,
                         height = 300,
@@ -100,7 +100,7 @@ fun App() {
                     .fillMaxWidth()
                     .padding(8.dp)
             ) {
-                val listItems: Array<String> = arrayOf("JPG", "PNG", "BMP", "WEBP")
+                val listItems: Array<String> = arrayOf("JPG", "PNG", "BMP", "WEBP", "TIFF")
                 var disabledItem: Int by remember { mutableStateOf(-1) }
                 var expanded: Boolean by remember { mutableStateOf(false) }
 
@@ -135,13 +135,11 @@ fun App() {
             ) {
                 Button(
                     onClick = {
-                        val parent: Dialog? = null
-                        val fileChooser = FileDialog(parent, "Select output location", FileDialog.SAVE)
+                        val fileChooser = FileDialog(ComposeWindow(), "Select output location", FileDialog.SAVE)
                         fileChooser.isVisible = true
-                        if (fileChooser.file != null) {
-                            outputLocation = fileChooser.directory + fileChooser.file
-                        }
+                        if (fileChooser.file != null) { outputLocation = fileChooser.directory + fileChooser.file }
                     },
+                    enabled = (selectedItem != "Select output format"),
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                 ) {
@@ -161,7 +159,7 @@ fun App() {
             }
 
             Button( // the convert button
-                onClick = { thread { handler.write(outputLocation, selectedItem) }},
+                onClick = { thread { handler.write(outputLocation, selectedItem) } },
                 enabled = (selectedItem != "Select output format" && outputLocation != ""),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -170,7 +168,6 @@ fun App() {
             ) {
                 Text(text = "Convert")
             }
-
 
         }
     }

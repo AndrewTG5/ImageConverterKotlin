@@ -4,6 +4,7 @@ import com.sksamuel.scrimage.ImmutableImage
 import com.sksamuel.scrimage.nio.BmpWriter
 import com.sksamuel.scrimage.nio.JpegWriter
 import com.sksamuel.scrimage.nio.PngWriter
+import com.sksamuel.scrimage.nio.TiffWriter
 import com.sksamuel.scrimage.webp.WebpWriter
 import org.jetbrains.skia.Image
 import java.io.File
@@ -46,6 +47,7 @@ class ImageHandler {
             "JPEG" -> image!!.output(JpegWriter.Default, path)
             "WEBP" -> image!!.output(WebpWriter.MAX_LOSSLESS_COMPRESSION, path)
             "BMP" -> image!!.output(BmpWriter(), path)
+            "TIFF" -> image!!.output(TiffWriter(), path)
         }
     }
 }
