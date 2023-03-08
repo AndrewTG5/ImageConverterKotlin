@@ -162,6 +162,7 @@ fun App() {
 
             Button( // the convert button
                 onClick = { thread { handler.write(outputLocation, selectedItem) }},
+                enabled = (selectedItem != "Select output format" && outputLocation != ""),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
