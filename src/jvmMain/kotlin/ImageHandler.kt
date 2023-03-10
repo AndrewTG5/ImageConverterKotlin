@@ -41,13 +41,32 @@ class ImageHandler {
      * @param path The path to write the image to.
      * @param format The format to write the image in.
      */
-    fun write(path: String, format:String) {
+    fun write(path: String, format:String, width: String, height: String) {
+        val localImage = image!!.scaleTo(width.toInt(), height.toInt())
         when (format) {
-            "PNG" -> image!!.output(PngWriter.NoCompression, path)
-            "JPEG" -> image!!.output(JpegWriter.Default, path)
-            "WEBP" -> image!!.output(WebpWriter.MAX_LOSSLESS_COMPRESSION, path)
-            "BMP" -> image!!.output(BmpWriter(), path)
-            "TIFF" -> image!!.output(TiffWriter(), path)
+            "PNG" -> localImage.output(PngWriter.NoCompression, path)
+            "JPG" -> localImage.output(JpegWriter.Default, path)
+            "WEBP" -> localImage.output(WebpWriter.MAX_LOSSLESS_COMPRESSION, path)
+            "BMP" -> localImage.output(BmpWriter(), path)
+            "TIFF" -> localImage.output(TiffWriter(), path)
         }
+    }
+
+    /**
+     * Returns the current image's width.
+     * @return The current image's width.
+     */
+    fun getWidth(): String {
+        if (image == null) return ""
+        return image!!.width.toString()
+    }
+
+    /**
+     * Returns the current image's height.
+     * @return The current image's height.
+     */
+    fun getHeight(): String {
+        if (image == null) return ""
+        return image!!.height.toString()
     }
 }
