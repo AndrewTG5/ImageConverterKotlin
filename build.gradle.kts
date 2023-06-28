@@ -2,8 +2,8 @@ import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("multiplatform") version "1.8.0"
-    id("org.jetbrains.compose") version "1.3.0"
+    kotlin("multiplatform") version "1.8.20"
+    id("org.jetbrains.compose") version "1.4.1"
 }
 
 group = "com.andrewtg"
@@ -27,6 +27,7 @@ kotlin {
                 implementation("com.sksamuel.scrimage:scrimage-core:4.0.33")
                 implementation("com.sksamuel.scrimage:scrimage-formats-extra:4.0.33")
                 implementation("com.sksamuel.scrimage:scrimage-webp:4.0.33")
+                implementation("org.slf4j:slf4j-nop:2.0.6") // get rid of slf4j errors. can be replaced by "org.slf4j:slf4j-simple:2.0.6" if you want logging
             }
         }
         val jvmTest by getting
