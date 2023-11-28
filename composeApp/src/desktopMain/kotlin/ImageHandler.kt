@@ -16,7 +16,6 @@ class ImageHandler {
 
     private var image: ImmutableImage? = null
 
-
     /**
      * Reads the image specified by path.
      * @param path The image to read.

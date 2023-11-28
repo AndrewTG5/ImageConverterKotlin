@@ -48,14 +48,14 @@ fun App() {
             Modifier.fillMaxHeight(),
         ) {
             var displayImage: ImageBitmap by remember { mutableStateOf( // the currently displayed image, defaults to a blank image
-                    ImageBitmap(
-                        width = 300,
-                        height = 300,
-                        config = ImageBitmapConfig.Argb8888,
-                        colorSpace = ColorSpaces.Srgb,
-                        hasAlpha = true
-                    )
+                ImageBitmap(
+                    width = 300,
+                    height = 300,
+                    config = ImageBitmapConfig.Argb8888,
+                    colorSpace = ColorSpaces.Srgb,
+                    hasAlpha = true
                 )
+            )
             }
             var selectedItem: String by remember { mutableStateOf("Select output format") } // the currently selected output format ("WEBP", "PNG", etc.)
             var width: String by remember { mutableStateOf("") } // the width set in the ui
