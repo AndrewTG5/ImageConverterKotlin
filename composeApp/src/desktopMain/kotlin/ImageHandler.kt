@@ -6,7 +6,6 @@ import com.sksamuel.scrimage.nio.JpegWriter
 import com.sksamuel.scrimage.nio.PngWriter
 import com.sksamuel.scrimage.nio.TiffWriter
 import com.sksamuel.scrimage.webp.WebpWriter
-import org.jetbrains.skia.Image
 import java.io.File
 
 /**
@@ -30,9 +29,8 @@ class ImageHandler {
      * @return The current image as an ImageBitmap.
      */
     fun getImage(): ImageBitmap {
-        val writer = BmpWriter()
-        image!!.bytes(writer)
-        return Image.makeFromEncoded(image!!.bytes(writer)).toComposeImageBitmap()
+        if (image == null) return ImageBitmap(1, 1)
+        return image!!.awt().toComposeImageBitmap()
     }
 
     /**

@@ -26,6 +26,7 @@ kotlin {
             implementation("com.sksamuel.scrimage:scrimage-formats-extra:4.1.1")
             implementation("com.sksamuel.scrimage:scrimage-webp:4.1.1")
             implementation("org.slf4j:slf4j-nop:2.0.9") // get rid of slf4j errors. can be replaced by "org.slf4j:slf4j-simple:2.0.9" if you want logging
+            implementation("com.darkrockstudios:mpfilepicker:3.0.0") // file picker library
         }
     }
 }
@@ -36,7 +37,7 @@ compose.desktop {
         mainClass = "MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Msi)
             packageName = "ImageConverterKotlin"
             packageVersion = "2.0.0"
         }
